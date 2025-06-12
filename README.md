@@ -3,15 +3,16 @@
 Overlay over any other program, draw a grid over it, and click neatly on that grid. Works for Windows only.
 
 ## Demo
-[Demo Video](https://raw.githubusercontent.com/codynhanpham/GridClicker/main/static/demo.mp4)
+[Demo Video](https://github.com/codynhanpham/grid_clicker/raw/refs/heads/main/static/demo.mp4)
 
-![Demo Video](https://raw.githubusercontent.com/codynhanpham/GridClicker/main/static/demo.mp4)
+https://github.com/user-attachments/assets/f998c9d6-269d-4275-bc33-3dab50c5e7a2
+
 
 
 ## Installation
 
 ### Pre-built binaries
-Download the latest release from the [Releases](https://github.com/codynhanpham/GridClicker/releases) page.
+Download the latest release from the [Releases](https://github.com/codynhanpham/grid_clicker/releases) page.
 
 ### Build from source
 1. Install [Rust](https://www.rust-lang.org/tools/install) and [Bun](https://bun.sh/).
