@@ -1,0 +1,56 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "Grid Clicker",
+  "version": "0.1.0",
+  "identifier": "org.oviedolab.app.grid-clicker",
+  "build": {
+    "frontendDist": "../build",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "bun run dev",
+    "beforeBuildCommand": "bun run build"
+  },
+  "app": {
+		"windows": [
+			{
+				"title": "Grid Clicker",
+				"width": 540,
+				"minWidth": 480,
+				"height": 480,
+				"minHeight": 460,
+				"resizable": true,
+				"fullscreen": false,
+				"decorations": false,
+				"visible": false,
+        "transparent": true,
+        "alwaysOnTop": true
+			}
+		],
+		"security": {
+			"csp": {
+				"default-src": "'self' customprotocol: asset:",
+				"connect-src": "ipc: http://ipc.localhost",
+				"font-src": ["https://fonts.gstatic.com"],
+				"img-src": "'self' asset: http://asset.localhost blob: data:",
+				"style-src": "'unsafe-inline' 'self' https://fonts.googleapis.com"
+			}
+		}
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/Square284x284Logo.png",
+      "icons/Square310x310Logo.png",
+      "icons/icon.icns",
+      "icons/icon.ico",
+      "icons/icon.svg"
+    ],
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/icon.ico"
+      }
+    }
+  }
+}
