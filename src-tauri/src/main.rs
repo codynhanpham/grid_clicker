@@ -5,5 +5,5 @@
 )]
 
 fn main() {
-    app_lib::run();
+    grid_clicker_lib::run();
 }
