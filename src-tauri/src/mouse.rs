@@ -68,7 +68,7 @@ fn handle_home_click(enigo: &mut Enigo, home: Point, home_opts: HomeClickOpts) -
 
 
 #[tauri::command]
-pub fn mouse_click_points(window: tauri::Window, points: Vec<Point>, home: Option<Point>, grid_options: MouseClickOpts, home_options: HomeClickOpts) -> Result<(), String> {
+pub async fn mouse_click_points(window: tauri::Window, points: Vec<Point>, home: Option<Point>, grid_options: MouseClickOpts, home_options: HomeClickOpts) -> Result<(), String> {
     let mut enigo = Enigo::new(&Settings::default()).unwrap();
 
     set_transparency(window.clone(), true)?;

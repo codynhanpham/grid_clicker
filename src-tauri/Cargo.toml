@@ -22,12 +22,12 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 enigo = "0.5.0"
 log = "0.4"
-tauri = { version = "2.5.0", features = [] }
+tauri = { version = "2.5.0", features = ["devtools"] }
 tauri-plugin-log = "2"
 tauri-plugin-store = "2"
 
 [dependencies.windows]
-version = "0.36.1"
+version = "0.61"
 features = [
     "Win32_Foundation",
     "Win32_UI_WindowsAndMessaging",

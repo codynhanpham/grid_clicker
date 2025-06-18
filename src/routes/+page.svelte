@@ -145,6 +145,8 @@
     let dragEnd = $state({ x: 0, y: 0 });
     let tempRectangle: Rectangle | null = null;
     let tempGridPoints: Point[] | null = null;
+    
+    let canvasMousePos: Point | null = $state(null);
 
     function makeFullSizeCanvas(canvas?: HTMLCanvasElement, window?: Window) {
         if (!canvas || !window) return;
@@ -285,16 +287,27 @@
     });
 </script>
 
-<canvas
-    id="app-canvas"
-    class={cn(
-        "relative flex-1 overflow-hidden",
-        ((controllerState.rectangleSelecting || controllerState.homeSelecting) ? "cursor-crosshair" : "")
-    )}
-    onclick={async () => {
-        // getCurrentWindow().setFocus();
-    }}
->
-
-</canvas>
-
+<div class="relative flex-1 w-full h-full overflow-hidden">
+    <canvas
+        id="app-canvas"
+        class={cn(
+            "relative flex-1 w-full h-full overflow-hidden",
+            ((controllerState.rectangleSelecting || controllerState.homeSelecting) ? "cursor-crosshair" : "")
+        )}
+        onmousemove={async (event: MouseEvent) => {
+            if (!appCanvas) {
+                canvasMousePos = null;
+                return;
+            }
+            canvasMousePos = getCanvasMousePos(appCanvas, event);
+        }}
+        onmouseleave={async () => {
+            canvasMousePos = null;
+        }}
+    >
+    </canvas>
+    <!-- A dot that follows the mouse cursor -->
+    {#if canvasMousePos}
+        <div class="absolute w-2 h-2 -translate-1/2 rounded-full bg-emerald-500 pointer-events-none duration-0" style={`left: ${canvasMousePos.x}px; top: ${canvasMousePos.y}px`}></div>
+    {/if}
+</div>

@@ -1,8 +1,4 @@
 import type { Grid } from "$lib/components/controller/controller.svelte";
-import {
-    MapPinHouse,
-    type IconNode,
-} from '@lucide/svelte/icons';
 
 
 export type Rectangle = {
@@ -85,7 +81,6 @@ export function strokeRectangle(context: CanvasRenderingContext2D, rectangle: Re
 
 
 export function strokeX(context: CanvasRenderingContext2D, x: number, y: number, size: number, color: string, lineWidth: number=2) {
-    // Draw an X shape at the specified position
     context.strokeStyle = color;
     context.lineWidth = lineWidth;
     context.beginPath();
@@ -111,7 +106,6 @@ export function addRectangleGridLines(context: CanvasRenderingContext2D, rectang
     const gridLineWidth = style.lineWidth * 0.4;
     const gridLineColor = style.strokeColor;
     const gridLineDash = [gridLineWidth*4, gridLineWidth*6];
-    // type Alignment = 'center' | 'topleft' | 'topcenter' | 'topright' | 'middleleft' | 'middleright' | 'bottomleft' | 'bottomcenter' | 'bottomright';
 
     // Calculate the grid lines based on the grid size, except for the bounding rectangle
     const gridLines: [Point, Point][] = [];

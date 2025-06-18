@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Grid Clicker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "identifier": "org.oviedolab.app.grid-clicker",
   "build": {
     "frontendDist": "../build",
@@ -22,7 +22,9 @@
 				"decorations": false,
 				"visible": false,
         "transparent": true,
-        "alwaysOnTop": true
+        "alwaysOnTop": true,
+        "devtools": false,
+        "dragDropEnabled": false
 			}
 		],
 		"security": {

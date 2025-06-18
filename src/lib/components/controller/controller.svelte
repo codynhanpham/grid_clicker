@@ -121,16 +121,13 @@
         Grid3x2,
         Mouse,
         Play,
-        Plus,
         LoaderCircle,
         SquareDashedMousePointer,
         Timer,
         Trash2,
 		Gauge,
 		CirclePause,
-		HousePlus,
 		MapPinHouse,
-		HousePlug,
 		Cable,
 		CirclePlay,
 		ClockFading,
@@ -138,7 +135,6 @@
 
     } from '@lucide/svelte/icons';
 	import { onMount, tick } from "svelte";
-	import { get } from "svelte/store";
 	import Separator from '../ui/separator/separator.svelte';
 
     let {
@@ -589,7 +585,7 @@
 
 
         <Button
-            disabled={controllerState.cursorClickingInProgress || nSelectedPoints === 0}
+            disabled={controllerState.cursorClickingInProgress || (nSelectedPoints === 0 && !homeSelected)}
             title={nSelectedPoints === 0 ? "Create a selection grid first!" : "Grid Click!"}
             class={cn("h-fit w-fit hover:cursor-pointer", (isSmallScreen ? "!p-2" : ""))}
             onclick={async () => {
@@ -598,15 +594,21 @@
                 controllerState.homeSelecting = false;
                 await tick();
                 const lastMousePos = await invoke('get_mouse_pos') as Point;
-                const points = await getSelectedPointsScreenPosition();
+                let points = await getSelectedPointsScreenPosition();
                 const home = await getSelectedHomePointScreenPosition();
-                if (!points) return;
+                if (!points && !home) {
+                    controllerState.cursorClickingInProgress = false;
+                    return;
+                };
+                if (!points) {
+                    points = [];
+                }
 
                 if (!controllerState.cursorClickOptions.duration) {
-                    controllerState.cursorClickOptions.duration = 30;
+                    controllerState.cursorClickOptions.duration = 5;
                 }
                 if (!controllerState.cursorClickOptions.interval) {
-                    controllerState.cursorClickOptions.interval = 69;
+                    controllerState.cursorClickOptions.interval = 10;
                 }
                 const mouseOptions = {
                     button: controllerState.cursorClickMode,
@@ -621,6 +623,7 @@
                     click_at_end: controllerState.homeClickOptions.clickAtEnd,
                 }
                 await tick();
+                console.log(points, home);
                 await invoke('mouse_click_points', { points: points, home: home, gridOptions: mouseOptions, homeOptions: homeOptions })
                 await invoke('mouse_move_to', { point: lastMousePos })
                 controllerState.cursorClickingInProgress = false;

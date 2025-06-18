@@ -13,7 +13,7 @@
 
 	import { TitleBar } from '$lib/components/app-titlebar';
 	import type { MenubarData } from '$lib/components/app-titlebar/menubar.svelte';
-	import Controller, { controllerState } from '$lib/components/controller/controller.svelte';
+	import Controller from '$lib/components/controller/controller.svelte';
 
 	import { onMount, onDestroy } from 'svelte';
 
